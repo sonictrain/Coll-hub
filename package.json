@@ -1,0 +1,20 @@
+{
+  "name": "coll-hub",
+  "version": "1.0.0",
+  "description": "Coll-hub is a dynamic team board powered by NodeJS &amp; Bootstrap. Streamline team management with interactive member cards seamlessly with Coll-hub.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "start": "node index",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "inquirer": "^8.2.4",
+    "jest": "^29.7.0"
+  }
+}
