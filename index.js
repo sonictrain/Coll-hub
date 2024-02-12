@@ -13,44 +13,49 @@ const render = require("./src/page-template.js");
 
 let team = {
     name: 'My Team',
-    employee: []
+    employees: []
 };
 
-inquirer
-    .prompt(startingPrompts)
-    .then((answers) => {
+const main = () => {
 
-        const { teamName, managerName, managerID, managerEmail, managerOfficeNumber } = answers
-        const manager = new Manager(managerName, managerID, managerEmail, managerOfficeNumber)
+    inquirer
+        .prompt(startingPrompts)
+        .then((answers) => {
 
-        team.name = teamName
-        team.employee.push(manager)
-        add2Team();
+            const { teamName, managerName, managerID, managerEmail, managerOfficeNumber } = answers
+            const manager = new Manager(managerName, managerID, managerEmail, managerOfficeNumber)
 
-    }).catch((err) => console.error(err))
+            team.name = teamName
+            team.employees.push(manager)
+            add2Team();
 
-const add2Team = async () => {
+        }).catch((err) => console.error(err))
 
-    let buildTeam = true;
+    const add2Team = async () => {
 
-    while (buildTeam) {
-        await inquirer
-            .prompt(nextPrompts)
-            .then((answers) => {
+        let buildTeam = true;
 
-                const { nextStep, engineerName, engineerID, engineerEmail, engineerGithub, internName, internID, internEmail, internSchool } = answers
-                switch (nextStep) {
-                    case "Add an engineer":
-                        const engineer = new Engineer(engineerName, engineerID, engineerEmail, engineerGithub)
-                        team.employee.push(engineer)
-                        break;
-                    case "Add an intern":
-                        const intern = new Intern(internName, internID, internEmail, internSchool)
-                        team.employee.push(intern)
-                        break;
-                    default:
-                        buildTeam = false
-                }
-            }).catch((err) => console.error(err))
+        while (buildTeam) {
+            await inquirer
+                .prompt(nextPrompts)
+                .then((answers) => {
+
+                    const { nextStep, engineerName, engineerID, engineerEmail, engineerGithub, internName, internID, internEmail, internSchool } = answers
+                    switch (nextStep) {
+                        case "Add an engineer":
+                            const engineer = new Engineer(engineerName, engineerID, engineerEmail, engineerGithub)
+                            team.employees.push(engineer)
+                            break;
+                        case "Add an intern":
+                            const intern = new Intern(internName, internID, internEmail, internSchool)
+                            team.employees.push(intern)
+                            break;
+                        default:
+                            buildTeam = false
+                    }
+                }).catch((err) => console.error(err))
+        }
     }
 }
+
+main()
