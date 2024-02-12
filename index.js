@@ -22,5 +22,32 @@ inquirer
 
             team.push(manager)
             console.log(team)
+            add2Team()
 
         }).catch((err) => console.error(err))
+
+        const add2Team = async () => {
+
+            let buildTeam = true;
+    
+            while (buildTeam) {
+                await inquirer
+                    .prompt(nextPrompts)
+                    .then((answers) => {
+    
+                        const { nextStep, engineerName, engineerID, engineerEmail, engineerGithub, internName, internID, internEmail, internSchool } = answers
+                        switch (nextStep) {
+                            case "Add an engineer":
+                                const engineer = new Engineer(engineerName, engineerID, engineerEmail, engineerGithub)
+                                team.push(engineer)
+                                break;
+                            case "Add an intern":
+                                const intern = new Intern(internName, internID, internEmail, internSchool)
+                                team.push(intern)
+                                break;
+                            default:
+                                buildTeam = false
+                        }
+                    }).catch((err) => console.error(err))
+            }
+        }
