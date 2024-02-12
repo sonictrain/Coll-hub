@@ -52,7 +52,17 @@ const main = () => {
                             break;
                         default:
                             buildTeam = false
+
+                            fs.mkdirSync(OUTPUT_DIR)
+                            fs.writeFileSync( outputPath, render(team), (err) => {
+                                if (err) {
+                                throw err
+                                }
+                            })
+                            console.log(chalk.green('✅ You can find your Coll-hub board is available here ./output/team.html'))   
                     }
+
+
                 }).catch((err) => console.error(err))
         }
     }
