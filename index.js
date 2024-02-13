@@ -11,12 +11,12 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./src/page-template.js");
 
-let team = {
-    name: 'My Team',
-    employees: []
-};
-
 const main = () => {
+
+    let team = {
+        name: 'My Team',
+        employees: []
+    };
 
     inquirer
         .prompt(startingPrompts)
@@ -53,16 +53,16 @@ const main = () => {
                         default:
                             buildTeam = false
 
-                            fs.mkdirSync(OUTPUT_DIR)
+                            if (!fs.existsSync(OUTPUT_DIR)) {
+                                fs.mkdirSync(OUTPUT_DIR)
+                            }
                             fs.writeFileSync( outputPath, render(team), (err) => {
                                 if (err) {
-                                throw err
+                                    console.error(err)
                                 }
+                                console.log(chalk.green('✅ You can find your Coll-hub board is available here ./output/team.html'))   
                             })
-                            console.log(chalk.green('✅ You can find your Coll-hub board is available here ./output/team.html'))   
                     }
-
-
                 }).catch((err) => console.error(err))
         }
     }
