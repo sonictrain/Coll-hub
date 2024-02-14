@@ -1,6 +1,6 @@
 
 # Coll-hub
-![MIT_License](https://img.shields.io/badge/MIT_License-025e8c) ![inquirer_v8.2.4](https://img.shields.io/badge/inquirer-v8.2.4-ff3300) ![JavaScript](https://img.shields.io/badge/JavaScript-100%-yellow)
+![MIT_License](https://img.shields.io/badge/MIT_License-025e8c) ![inquirer_v8.2.4](https://img.shields.io/badge/inquirer-v8.2.4-ff3300) ![JavaScript](https://img.shields.io/badge/JavaScript-100%25-yellow)
  
 1. [Intro](#Intro) 
 2. [Description](#Description) 
