@@ -2,6 +2,7 @@ const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
+const chalk = require("chalk");
 const path = require("path");
 const fs = require("fs");
 const { startingPrompts, nextPrompts } = require("./src/prompts")
@@ -56,11 +57,12 @@ const main = () => {
                             if (!fs.existsSync(OUTPUT_DIR)) {
                                 fs.mkdirSync(OUTPUT_DIR)
                             }
-                            fs.writeFileSync( outputPath, render(team), (err) => {
+                            fs.writeFile( outputPath, render(team), (err) => {
                                 if (err) {
                                     console.error(err)
+                                } else {
+                                    console.log(chalk.green('✅ You can find your Coll-hub board is available here ./output/team.html'))   
                                 }
-                                console.log(chalk.green('✅ You can find your Coll-hub board is available here ./output/team.html'))   
                             })
                     }
                 }).catch((err) => console.error(err))
